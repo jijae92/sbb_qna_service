@@ -61,7 +61,7 @@ public class MainController {
         int b = Integer.parseInt(req.getParameter("b"));
         resp.getWriter().append(a + b +"" );
     }
-
+//15강 들을 차례
     @GetMapping("/minus")
     @ResponseBody
     public int showMinus(int a, int b) {
@@ -101,5 +101,19 @@ public class MainController {
         return IntStream.rangeClosed(1, limit)
                 .mapToObj(i -> "%d * %d = %d".formatted(finalDan, i, finalDan * i))
                 .collect(Collectors.joining("<br>"));
+    }
+
+    @GetMapping("/mbti/{name}")
+    @ResponseBody
+    public String showMbti(@PathVariable String name) {
+        return switch (name){
+            case "홍길동" -> "INFP";
+            case "홍길순" -> "ENFP";
+            case "임꺽정" -> "ESFJ";
+            case "장익재" -> "ESFP";
+            default -> "모름";
+
+        };
+
     }
 }
