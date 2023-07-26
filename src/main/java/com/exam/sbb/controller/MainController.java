@@ -220,33 +220,33 @@ public class MainController {
         return p;
     }
 
-    @AllArgsConstructor
-    @Getter
-    @Setter
-    class Article {
-        private static int lastId = 0;
+}
 
-        private int id;
-        private String title;
-        private String body;
+@AllArgsConstructor
+@Getter
+@Setter
+class Article {
+    private static int lastId = 0;
 
-        public Article(String title, String body){
-            this(++lastId, title, body);
-        }
+    private int id;
+    private String title;
+    private String body;
+
+    public Article(String title, String body){
+        this(++lastId, title, body);
     }
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @Getter
-    @Setter
-    class Person {
-        private int id;
-        private int age;
-        private String name;
+}
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+class Person {
+    private int id;
+    private int age;
+    private String name;
 
-        public Person(int age, String name) {
-            this.age = age;
-            this.name = name;
-        }
+    public Person(int age, String name) {
+        this.age = age;
+        this.name = name;
     }
-
 }
