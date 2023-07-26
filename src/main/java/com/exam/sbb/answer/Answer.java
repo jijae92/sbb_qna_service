@@ -1,21 +1,25 @@
-package com.exam.sbb.question;
+package com.exam.sbb.answer;
 
-
-
-import lombok.Data;
+import com.exam.sbb.question.Question;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 @Entity
-@Data
-public class Question {
+public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(length = 200)
-    private String subject;
+    private Integer id;
+
     @Column(columnDefinition = "TEXT")
     private String content;
+
     private LocalDateTime createDate;
+
+    @ManyToOne
+    private Question question;
 }
