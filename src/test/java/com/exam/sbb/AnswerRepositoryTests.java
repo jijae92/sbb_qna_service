@@ -29,6 +29,8 @@ public class AnswerRepositoryTests {
     private int lastSampleDataId;
 
     @BeforeEach
+    @Transactional
+    @Rollback(value = false)
     void beforeEach(){
         clearData();
         createSampleData();
@@ -48,25 +50,23 @@ public class AnswerRepositoryTests {
 
         Answer a1 = new Answer();
         a1.setContent("sbb는 질문답변 게시판입니다.");
-        a1.setQuestion(q);  // 어떤 질문의 답변인지 알기위해서 Question 객체가 필요하다.
         a1.setCreateDate(LocalDateTime.now());
-        this.answerRepository.save(a1);
-
-        q.getAnswerList().add(a1);
+        q.addAnswer(a1);
+        answerRepository.save(a1);
 
         Answer a2 = new Answer();
         a2.setContent("sbb에서는 주로 스프링 관련 내용을 다룹니다.");
-        a2.setQuestion(q);  // 어떤 질문의 답변인지 알기위해서 Question 객체가 필요하다.
         a2.setCreateDate(LocalDateTime.now());
-        this.answerRepository.save(a2);
-
-        q.getAnswerList().add(a2);
+        q.addAnswer(a2);
+        answerRepository.save(a2);
 
         questionRepository.save(q);
 
     }
 
     @Test
+    @Transactional
+    @Rollback(value = false)
     void 저장() {
         Question q = this.questionRepository.findById(2).get();
 
@@ -74,6 +74,7 @@ public class AnswerRepositoryTests {
         a.setContent("네 자동으로 생성됩니다.");
         a.setQuestion(q);  // 어떤 질문의 답변인지 알기위해서 Question 객체가 필요하다.
         a.setCreateDate(LocalDateTime.now());
+        q.addAnswer(a);
         this.answerRepository.save(a);
     }
 

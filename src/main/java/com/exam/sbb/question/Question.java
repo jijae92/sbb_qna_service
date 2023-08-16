@@ -23,4 +23,9 @@ public class Question {
     private LocalDateTime createDate;
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answerList = new ArrayList<>();
+
+    public void addAnswer(Answer answer) {
+        answer.setQuestion(this);
+        getAnswerList().add(answer);
+    }
 }
