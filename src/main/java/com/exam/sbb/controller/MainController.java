@@ -220,7 +220,14 @@ public class MainController {
         return p;
     }
 
+    @GetMapping("/")
+    public String root(){
+        //return "redirect:/question/list";
+        return "home_main";
+    }
+
 }
+
 
 @AllArgsConstructor
 @Getter
