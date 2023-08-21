@@ -20,7 +20,7 @@
                 <span th:text="${question.id}"></span>번
             </td>
             <td>
-                [[${question.subject}]]
+                <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
             </td>
             <td th:text="${#strings.substring(question.createDate, 0, 10)}"></td>
         </tr>
