@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AnswerController {
     private final QuestionService questionService;
+    private final AnswerService answerService;
     @PostMapping("/create/{id}")
     public String createAnswer(Model model, @PathVariable int id, String content){
         Question question = questionService.getQuestion(id);
+        answerService.creat(question, content);
         return String.format("redirect:/question/detail/%s", id);
     }
 }
